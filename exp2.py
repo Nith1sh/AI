@@ -1,0 +1,33 @@
+# Electricity Billing System
+
+
+def calculate_bill(units):
+    if units < 0:
+        raise ValueError("Units consumed cannot be negative.")
+
+    if units <= 100:
+        return units * 1.50
+    if units <= 200:
+        return 100 * 1.50 + (units - 100) * 2.50
+    if units <= 500:
+        return 100 * 1.50 + 100 * 2.50 + (units - 200) * 4.00
+    return 100 * 1.50 + 100 * 2.50 + 300 * 4.00 + (units - 500) * 6.00
+
+
+def main():
+    customer_count = int(input("Enter number of customers: "))
+    if customer_count < 0:
+        raise ValueError("Number of customers cannot be negative.")
+
+    for customer_number in range(1, customer_count + 1):
+        print(f"\nCustomer {customer_number}")
+        name = input("Enter customer name: ")
+        units = float(input("Enter units consumed: "))
+        bill = calculate_bill(units)
+        print("Customer Name :", name)
+        print("Units :", units)
+        print("Bill Amount : Rs.", round(bill, 2))
+
+
+if __name__ == "__main__":
+    main()
